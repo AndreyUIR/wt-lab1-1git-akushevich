@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как я провёл лето</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-june: #1a73e8;
+            --color-july: #e8710a;
+            --color-august: #0d9488;
+            --color-bg: #f8f9fa;
+            --color-text: #1f2937;
+            --color-text-light: #6b7280;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            line-height: 1.7;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0d47a1 100%);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            animation: shimmer 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(5%, 3%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero .lead {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: 300;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* ===== MONTH CARDS ===== */
+        .month-section {
+            padding: 6rem 0;
+        }
+
+        .month-section:nth-child(even) {
+            background-color: #fff;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .month-badge {
+            display: inline-block;
+            padding: 0.4rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .badge-june {
+            background: rgba(26, 115, 232, 0.1);
+            color: var(--color-june);
+        }
+
+        .badge-july {
+            background: rgba(232, 113, 10, 0.1);
+            color: var(--color-july);
+        }
+
+        .badge-august {
+            background: rgba(13, 148, 136, 0.1);
+            color: var(--color-august);
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header .subtitle {
+            color: var(--color-text-light);
+            font-size: 1.1rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTENT CARD ===== */
+        .content-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .card-body-custom {
+            padding: 2.5rem;
+        }
+
+        .card-body-custom h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card-body-custom p {
+            color: var(--color-text-light);
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 0.5rem;
+            position: relative;
+        }
+
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: calc(100% + 1.5rem);
+            background: #e5e7eb;
+        }
+
+        .timeline-item:last-child .timeline-dot::after {
+            display: none;
+        }
+
+        .dot-june { background: var(--color-june); }
+        .dot-july { background: var(--color-july); }
+        .dot-august { background: var(--color-august); }
+
+        .timeline-content h4 {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-content p {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* ===== GALLERY GRID ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 4/3;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== HIGHLIGHTS ===== */
+        .highlight-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            background: #fff;
+            border: 1px solid #f1f5f9;
+        }
+
+        .highlight-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-card h5 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-card p {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .site-footer h3 {
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .site-footer p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .month-section { padding: 4rem 0; }
+            .card-body-custom { padding: 1.5rem; }
+            .section-header { margin-bottom: 2.5rem; }
+            .timeline-item { gap: 1rem; }
+        }
+
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Как я провёл лето</h1>
+        <p class="lead">
+            Учёба, практика и отдых — три месяца, которые стали одним из самых насыщенных периодов в моей жизни
+        </p>
+    </div>
+</section>
+
+<!-- ==================== ИЮНЬ ==================== -->
+<section id="june" class="month-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="month-badge badge-june">Июнь</span>
+            <h2>Учёба и сессия</h2>
+            <p class="subtitle">Сессия - далеко не в первый раз</p>
+        </div>
+
+        <!-- Main content -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-7">
+                <div class="content-card h-100">
+                    <div class="card-body-custom">
+                        <h3><i class="bi bi-mortarboard me-2" style="color: var(--color-june);"></i>Экзаменационная сессия</h3>
+                        <p>
+                            Июнь начался с сесии. Уже привыкшее дело, просто как и всегда.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="content-card h-100">
+                    <div class="card-body-custom">
+                        <h3 style="font-size: 1.3rem;"><i class="bi bi-list-check me-2" style="color: var(--color-june);"></i>Ключевые моменты</h3>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-june"></div>
+                            <div class="timeline-content">
+                                <h4>Начало сессии</h4>
+                                <p>Ничего страшного, конец 3 курса книг никак</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-june"></div>
+                            <div class="timeline-content">
+                                <h4>Подготовка</h4>
+                                <p>Повторение материала</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-june"></div>
+                            <div class="timeline-content">
+                                <h4>Финальная неделя</h4>
+                                <p>Конец уже близок...</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-june"></div>
+                            <div class="timeline-content">
+                                <h4>Завершение сессии</h4>
+                                <p>Все экзамены сданы успешно, можно выдыхать!(пока что)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== ИЮЛЬ ==================== -->
+<section id="july" class="month-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="month-badge badge-july">Июль</span>
+            <h2>Практика в воинской части</h2>
+            <p class="subtitle">Дисциплина, ответственность и новые навыки — опыт, который многому научил</p>
+        </div>
+
+        <!-- Main content -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-5">
+                <div class="content-card h-100">
+                    <div class="card-body-custom">
+                        <h3 style="font-size: 1.3rem;"><i class="bi bi-stars me-2" style="color: var(--color-july);"></i>Впечатления от практики</h3>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-july"></div>
+                            <div class="timeline-content">
+                                <h4>Первый день</h4>
+                                <p>Знакомство с личным составом и распорядком дня</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-july"></div>
+                            <div class="timeline-content">
+                                <h4>Строевая подготовка</h4>
+                                <p>Обучение основам военной дисциплины и строевой подготовки</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-july"></div>
+                            <div class="timeline-content">
+                                <h4>Тактическая подготовка</h4>
+                                <p>Изучение основ тактики и работы в подразделении</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-july"></div>
+                            <div class="timeline-content">
+                                <h4>Завершение практики</h4>
+                                <p>Итоговая проверка и получение оценки</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="content-card h-100">
+                    <img src="2.jpg" alt="Фото с воинской части" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+                    <div class="card-body-custom">
+                        <h3><i class="bi bi-geo-alt me-2" style="color: var(--color-july);"></i>Прохождение практики</h3>
+                        <p>
+                            В июле началась  практика в воинской части в Заслоново. Это был совершенно новый опыт — 
+                            ранние подъёмы, физическая подготовка, строевые занятия и изучение военного дела. 
+                           Это было сложно, но я справился.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlights -->
+        <div class="row g-3 mb-5">
+            <div class="col-md-4">
+                <div class="highlight-card">
+                    <div class="highlight-icon" style="background: rgba(232,113,10,0.1); color: var(--color-july);">
+                        <i class="bi bi-alarm"></i>
+                    </div>
+                    <h5>Подъём в 6:00</h5>
+                    <p>Каждый день начинался рано — привыкание к новому распорядку</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="highlight-card">
+                    <div class="highlight-icon" style="background: rgba(232,113,10,0.1); color: var(--color-july);">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <h5>Команда</h5>
+                    <p>Работа в подразделении и с личным составом - главное оружие психолога</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="highlight-card">
+                    <div class="highlight-icon" style="background: rgba(232,113,10,0.1); color: var(--color-july);">
+                        <i class="bi bi-trophy"></i>
+                    </div>
+                    <h5>Результат</h5>
+                    <p>Успешная сдача выпускного экзамена и принятие присяги</p>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="mb-3" style="font-family: 'Playfair Display', serif;">Фотографии из июля</h4>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="2.1.jpg" alt="Фото" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+            </div>
+            <div class="gallery-item">
+                <img src="3.jpg" alt="Фото" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="august" class="month-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="month-badge badge-august">Август</span>
+            <h2>Отдых и восстановление</h2>
+            <p class="subtitle">Заслуженный отдых, путешествия и время для себя после насыщенного лета</p>
+        </div>
+
+        <!-- Main content -->
+        <div class="row g-4 mb-5">
+            <div class="col-lg-7">
+                <div class="content-card h-100">
+                    <div class="card-body-custom">
+                        <h3><i class="bi bi-umbrella me-2" style="color: var(--color-august);"></i>Летний отдых</h3>
+                        <p>
+                            Август стал временем заслуженного отдыха. После напряжённых месяцев учёбы и практики 
+                            наконец-то удалось расслабиться и набраться сил. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="content-card h-100">
+                    <div class="card-body-custom">
+                        <h3 style="font-size: 1.3rem;"><i class="bi bi-calendar-heart me-2" style="color: var(--color-august);"></i>Чем занимались</h3>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-august"></div>
+                            <div class="timeline-content">
+                                <h4>Поездки на природу</h4>
+                                <p>Вылазки за город и прогулки по лесу</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-august"></div>
+                            <div class="timeline-content">
+                                <h4>Встречи с друзьями</h4>
+                                <p>Вечерние посиделки, совместные игровые вечера</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-august"></div>
+                            <div class="timeline-content">
+                                <h4>Хобби и саморазвитие</h4>
+                                <p>Время на увлечения, чтение книг и изучение нового</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot dot-august"></div>
+                            <div class="timeline-content">
+                                <h4>Подготовка к новому учебному году</h4>
+                                <p>Морально готовимся к 4 курсу</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlights -->
+        <div class="row g-3 mb-5">
+            <div class="col-md-4">
+                <div class="highlight-card">
+                    <div class="highlight-icon" style="background: rgba(13,148,136,0.1); color: var(--color-august);">
+                        <i class="bi bi-tree"></i>
+                    </div>
+                    <h5>На природе</h5>
+                    <p>Прогулки по лесу, поездки к реке и созерцание закатов</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="highlight-card">
+                    <div class="highlight-icon" style="background: rgba(13,148,136,0.1); color: var(--color-august);">
+                        <i class="bi bi-book-half"></i>
+                    </div>
+                    <h5>Чтение</h5>
+                    <p>Прочитал несколько книг, которые давно хотел осилить</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="highlight-card">
+                    <div class="highlight-icon" style="background: rgba(13,148,136,0.1); color: var(--color-august);">
+                        <i class="bi bi-battery-full"></i>
+                    </div>
+                    <h5>Восстановление</h5>
+                    <p>Набрался сил и энергии перед началом нового учебного года</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+    <h3>Как я провёл лето 2026</h3>
+    <p>Учёба, практика и отдых — три месяца, которые я запомню надолго, хочу я того или нет</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
